@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 data1 = [100, 90, 80, 60]
@@ -12,41 +11,14 @@ fig, ax = plt.subplots()
 # Make your code
 # ******************************
 
-datab = []
-for i in range(4):
-    subjectrow = [labels[i], data1[i], data2[i]]
-    datab.append(subjectrow)
+width = 0.7       # the width of the bars: can also be len(x) sequence
 
-x = np.arange(len(names))  # the label locations
-width = 0.35  # the width of the bars
+ax.bar(labels, data1, width, label= names[0])
+ax.bar(labels, data2, width, bottom=data1, label = names[1])
 
-# using dist from edges and subject number index
-def makebarm(num, subj): 
-    return ax.bar(x - width/(2*num), datab[subj][1:], width, label = datab[subj][0])
-
-# copy of function for making bar right of center to go right, unsure of parsing so unfortunately make a new one with just - -> +
-def makebarp(num, subj): 
-    return ax.bar(x + width/(2*num), datab[subj][1:], width, label = datab[subj][0])
-
-#each subjects bars added
-rects1 = makebarm(1, 0)
-rects2 = makebarm(2, 1)
-rects3 = makebarp(2, 2)
-rects4 = makebarp(1, 3)
-
-# Add some text for labels, title and custom x-axis tick labels, etc.
-ax.set_ylabel('Scores')
-ax.set_title(f'Scores of {names[0]} and {names[1]}')
-ax.set_xticks(x, names)
+ax.set_title(f'Scores by {names[0]} and {names[1]}')
 ax.legend()
 
-ax.bar_label(rects1, padding=3)
-ax.bar_label(rects2, padding=3)
-ax.bar_label(rects3, padding=3)
-ax.bar_label(rects4, padding=3)
-
-fig.tight_layout()
-
-plt.show()
+#plt.show()
 
 fig.savefig('A10.png')
