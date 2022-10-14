@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "T1",
+      "setup": "",
+      "run": "python testpng.py",
+      "input": "",
+      "output": "[\\w,\\W]*True[\\w,\\W]*",
+      "comparison": "regex",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
