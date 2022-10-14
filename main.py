@@ -14,35 +14,29 @@ fig, ax = plt.subplots()
 
 datab = []
 for i in range(4):
-    subjectrow = [lablels[i], data1[i], data2[i]]
-    datas.append(subjectrow)
-
-'''
-math = [data1[0], data2[0]]
-english = [data1[1], data2[1]]
-physics = [data1[2], data2[2]]
-computer = [data1[3], data2[3]]
-'''
+    subjectrow = [labels[i], data1[i], data2[i]]
+    datab.append(subjectrow)
 
 x = np.arange(len(names))  # the label locations
 width = 0.35  # the width of the bars
 
-def makebarm(num, subjectnum):
-    return ax.bar(x - width/(2*num), datab[subjectnum][1:], width, label = datab[subjectnum][0])
+# using dist from edges and subject number index
+def makebarm(num, subj): 
+    return ax.bar(x - width/(2*num), datab[subj][1:], width, label = datab[subj][0])
 
-def makebarp(num, subjectnum):
-    return ax.bar(x + width/(2*num), datab[subjectnum][1:], width, label = datab[subjectnum][0])
+# copy of function for making bar right of center to go right, unsure of parsing so unfortunately make a new one with just - -> +
+def makebarp(num, subj): 
+    return ax.bar(x + width/(2*num), datab[subj][1:], width, label = datab[subj][0])
 
-
-#fig, ax = plt.subplots()
-rects1 = makebarm(1, 1)
-rects2 = makebarm(2, 2)
-rects3 = makebarp(2, 3)
-rects4 = makebarp(1, 4)
+#each subjects bars added
+rects1 = makebarm(1, 0)
+rects2 = makebarm(2, 1)
+rects3 = makebarp(2, 2)
+rects4 = makebarp(1, 3)
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Scores')
-ax.set_title(f'Scores of {names.join(" and")}')
+ax.set_title(f'Scores of {names[0]} and {names[1]}')
 ax.set_xticks(x, names)
 ax.legend()
 
